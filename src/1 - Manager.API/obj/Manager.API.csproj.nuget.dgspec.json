@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.API\\Manager.API.csproj": {}
+    "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj": {}
   },
   "projects": {
-    "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.API\\Manager.API.csproj": {
+    "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.API\\Manager.API.csproj",
+        "projectUniqueName": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj",
         "projectName": "Manager.API",
-        "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.API\\Manager.API.csproj",
+        "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj",
         "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.API\\obj\\",
+        "outputPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

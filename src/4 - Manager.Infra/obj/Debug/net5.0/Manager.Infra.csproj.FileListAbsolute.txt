@@ -1,0 +1,5 @@
+G:\UCDBEntrevista\UCDBTeste\src\4 - Manager.Infra\obj\Debug\net5.0\Manager.Infra.csprojAssemblyReference.cache
+G:\UCDBEntrevista\UCDBTeste\src\4 - Manager.Infra\obj\Debug\net5.0\Manager.Infra.GeneratedMSBuildEditorConfig.editorconfig
+G:\UCDBEntrevista\UCDBTeste\src\4 - Manager.Infra\obj\Debug\net5.0\Manager.Infra.AssemblyInfoInputs.cache
+G:\UCDBEntrevista\UCDBTeste\src\4 - Manager.Infra\obj\Debug\net5.0\Manager.Infra.AssemblyInfo.cs
+G:\UCDBEntrevista\UCDBTeste\src\4 - Manager.Infra\obj\Debug\net5.0\Manager.Infra.csproj.CoreCompileInputs.cache

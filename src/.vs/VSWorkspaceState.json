@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\4 - Manager.Infra",
-    "\\4 - Manager.Infra\\Interface"
+    "\\1 - Manager.API",
+    "\\2 - Manager.Domain"
   ],
-  "SelectedNode": "\\4 - Manager.Infra\\Interface\\IBaseRepository.cs",
+  "SelectedNode": "\\2 - Manager.Domain\\Manager.Domain.csproj",
   "PreviewInSolutionExplorer": false
 }

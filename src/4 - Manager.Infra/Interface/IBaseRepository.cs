@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using Manager.Domain.Entities;
 
 namespace Manager.Infra.Interfaces
 {
@@ -11,7 +11,7 @@ namespace Manager.Infra.Interfaces
     {
         Task<T> Create(T obj);
         Task<T> Update(T obj);
-        Task<T> Remove(long id);
+        Task Remove(long id);
         Task<T> Get(long id);
         Task<List<T>> GetAll (T obj);
 

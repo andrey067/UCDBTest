@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1gVt/uXdF0O/jc1TZBP7UdmgxzRW4XsGuYggb2W0n7dqkr4FEZF4PuXLkQig3K50tHcoR7eXpx4bM/delGJ9vA==",
+  "dgSpecHash": "dVDIMJx0jG9I861gDIaHPeGPuuOmDvoAqIuXbCYaHCd3I67wI71QeXFOYzozMY5SrizwxkuoSM4o/3x3g+ICnQ==",
   "success": true,
-  "projectFilePath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.API\\Manager.API.csproj",
+  "projectFilePath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

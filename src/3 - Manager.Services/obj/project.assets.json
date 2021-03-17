@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.Services\\Manager.Services.csproj",
+      "projectUniqueName": "G:\\UCDBEntrevista\\UCDBTeste\\src\\3 - Manager.Services\\Manager.Services.csproj",
       "projectName": "Manager.Services",
-      "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.Services\\Manager.Services.csproj",
+      "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\3 - Manager.Services\\Manager.Services.csproj",
       "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\Manager.Services\\obj\\",
+      "outputPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\3 - Manager.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
