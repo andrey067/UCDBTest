@@ -1,0 +1,17 @@
+G:\UCDBEntrevista\UCDBTeste\src\Manager.Domain\obj\Debug\net5.0\Manager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+G:\UCDBEntrevista\UCDBTeste\src\Manager.Domain\obj\Debug\net5.0\Manager.Domain.AssemblyInfoInputs.cache
+G:\UCDBEntrevista\UCDBTeste\src\Manager.Domain\obj\Debug\net5.0\Manager.Domain.AssemblyInfo.cs
+G:\UCDBEntrevista\UCDBTeste\src\Manager.Domain\obj\Debug\net5.0\Manager.Domain.csproj.CoreCompileInputs.cache
+G:\UCDBEntrevista\UCDBTeste\src\Manager.Domain\obj\Debug\net5.0\Manager.Domain.csprojAssemblyReference.cache
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.csprojAssemblyReference.cache
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.AssemblyInfoInputs.cache
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.AssemblyInfo.cs
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.csproj.CoreCompileInputs.cache
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\bin\Debug\net5.0\Manager.Domain.deps.json
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\bin\Debug\net5.0\Manager.Domain.dll
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\bin\Debug\net5.0\ref\Manager.Domain.dll
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\bin\Debug\net5.0\Manager.Domain.pdb
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.dll
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\ref\Manager.Domain.dll
+G:\UCDBEntrevista\UCDBTeste\src\2 - Manager.Domain\obj\Debug\net5.0\Manager.Domain.pdb

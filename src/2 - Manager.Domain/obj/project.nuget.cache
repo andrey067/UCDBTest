@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rBAnhIij2IUL5RxiTmR2i/OTMytLSMfy0LqCJOE9GjmxllZZisnVb08hg3iRJhjyqwxiLWG83ilwTktJgWUMFw==",
+  "success": true,
+  "projectFilePath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\2 - Manager.Domain\\Manager.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\andre\\.nuget\\packages\\fluentvalidation\\9.5.3\\fluentvalidation.9.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "tarefa-Base",
+      "appliesTo": "Manager.Domain/Entities/Base.cs",
+      "type": "launch"
+    }
+  ]
+}
