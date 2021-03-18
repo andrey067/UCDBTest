@@ -1,7 +1,7 @@
 using System.Linq;
 using Manager.Infra.Context;
 using System.Threading.Tasks;
-using Manager.Domain.Entities;
+using Manager.DomainException.Entities;
 using Manager.Infra.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

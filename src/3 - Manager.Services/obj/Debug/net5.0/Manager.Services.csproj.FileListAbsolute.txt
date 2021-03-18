@@ -2,7 +2,6 @@ G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\bin\Debug\net5.0\Manager.Se
 G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\bin\Debug\net5.0\Manager.Services.dll
 G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\bin\Debug\net5.0\ref\Manager.Services.dll
 G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\bin\Debug\net5.0\Manager.Services.pdb
-G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\obj\Debug\net5.0\Manager.Services.csprojAssemblyReference.cache
 G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\obj\Debug\net5.0\Manager.Services.GeneratedMSBuildEditorConfig.editorconfig
 G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\obj\Debug\net5.0\Manager.Services.AssemblyInfoInputs.cache
 G:\UCDBEntrevista\UCDBTeste\src\3 - Manager.Services\obj\Debug\net5.0\Manager.Services.AssemblyInfo.cs

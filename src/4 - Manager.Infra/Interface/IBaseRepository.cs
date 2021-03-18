@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Manager.Domain.Entities;
+using Manager.DomainException.Entities;
 
 namespace Manager.Infra.Interfaces
 {

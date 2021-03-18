@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manager.DomainException.Entities;
+using Manager.Infra.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace Manager.Infra.Interface

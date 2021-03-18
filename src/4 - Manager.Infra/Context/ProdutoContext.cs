@@ -1,5 +1,5 @@
 ﻿using System;
-using Manager.Domain.Entities;
+using Manager.DomainException.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Manager.Infra.Context
@@ -10,7 +10,8 @@ namespace Manager.Infra.Context
         {
 
         }
-
+        //Criação da tebela pelo EF - para a StartUp.cs, encontrar o Manager.Infra
+        //Fazendo a referencia -> Add-Migration NewMigration -Project Manager
         public virtual DbSet<Produto> Produtos { get; set; }
 
 

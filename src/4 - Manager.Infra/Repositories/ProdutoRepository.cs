@@ -1,4 +1,4 @@
-using Manager.Domain.Entities;
+using Manager.DomainException.Entities;
 using Manager.Infra.Context;
 using Manager.Infra.Interface;
 using System;

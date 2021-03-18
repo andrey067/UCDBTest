@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Manager.DomainException.Validators;
+using System;
 using System.Collections.Generic;
-using Manager.Domain.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
+using Manager.Core.Exceptions;
 
 
-namespace Manager.Domain.Entities
+
+namespace Manager.DomainException.Entities
 {
     public class Produto : Base
     {
@@ -12,6 +15,7 @@ namespace Manager.Domain.Entities
         //Propriedades
         public string Nome_produto { get; private set; }
 
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Valor { get; private set; }
 
         public DateTime Data_vencimento { get; private set; }
@@ -66,8 +70,7 @@ namespace Manager.Domain.Entities
                 { 
 
                 _errors.Add(erros.ErrorMessage);
-                    throw new Exception("Alguns campos estão invalidos, por favor corrija-os" + _errors[0]);
-
+                    throw new Exception("Alguns campos estão inválidos, por favor corrija-os!" + _errors);
                 }
             }
              return true;
