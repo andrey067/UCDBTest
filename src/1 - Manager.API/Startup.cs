@@ -40,7 +40,7 @@ namespace Manager.API
             {
                 cfg.CreateMap<Produto, ProdutoDTO>().ReverseMap();
                 cfg.CreateMap<CreateViewModel, ProdutoDTO>().ReverseMap();
-                //cfg.CreateMap<UpdateViewModel, ProdutoDTO>().ReverseMap();
+                cfg.CreateMap<UpdateViewModel, ProdutoDTO>().ReverseMap();
             });
             services.AddSingleton(autoMapperConfig.CreateMapper());
             #endregion

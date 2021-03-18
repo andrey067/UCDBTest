@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Manager.Core.Exceptions;
 using Manager.Domain.Entities;
 using Manager.Infra.Interface;
 using Manager.Services.DTO;
@@ -28,7 +29,7 @@ namespace Manager.Services.Services
             var produtoExist = await _produtoRepository.GetByNome_produto(produtoDTO.Nome_produto);
             if (produtoExist != null)
             {
-                throw new Exception("Já exixte um produto cadastrado com esse nome");
+                throw new DomainException("Já exixte um produto cadastrado com esse nome");
             }
 
             var produto = _mapper.Map<Produto>(produtoDTO);
@@ -47,7 +48,7 @@ namespace Manager.Services.Services
 
             if (produtoExist == null)
             {
-                throw new Exception("Produto não existe");
+                throw new DomainException("Produto não existe");
 
             }
             var produto = _mapper.Map<Produto>(produtoDTO);
@@ -86,6 +87,21 @@ namespace Manager.Services.Services
             await _produtoRepository.Remove(id);
         }
 
+        public async Task<List<ProdutoDTO>> SearchByNome_Produto(string nome_produto)
+        {
+            var todosProdutos = await _produtoRepository.SearchByNome(nome_produto);
 
+
+            return _mapper.Map<List<ProdutoDTO>>(todosProdutos);
+        }
+
+        public async Task<List<ProdutoDTO>> SearchByData_vencimento(DateTime data_vencimento)
+        {
+            var allDatas = await _produtoRepository.SearchByData_vencimento(data_vencimento);
+
+            return _mapper.Map<List<ProdutoDTO>>(allDatas);
+
+
+        }
     }
 }

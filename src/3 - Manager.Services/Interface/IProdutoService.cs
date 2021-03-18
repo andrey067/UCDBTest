@@ -13,5 +13,9 @@ namespace Manager.Services.Interface
         Task<ProdutoDTO> Get(long id);
         Task<List<ProdutoDTO>> GetAll();
 
+        Task<List<ProdutoDTO>> SearchByNome_Produto(string nome_produto);
+
+        Task<List<ProdutoDTO>> SearchByData_vencimento(DateTime data_vencimento);
+
     }
 }
