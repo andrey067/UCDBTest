@@ -10,8 +10,8 @@ namespace Manager.Services.Interface
         Task<ProdutoDTO> Create(ProdutoDTO produtoDTO);
         Task<ProdutoDTO> Update(ProdutoDTO produtoDTO);
         Task Remove(long id);
-        Task<ProdutoDTO> Get(ProdutoDTO produtoDTO);
-        Task<List<ProdutoDTO>> GetAll(ProdutoDTO produtoDTO);
+        Task<ProdutoDTO> Get(long id);
+        Task<List<ProdutoDTO>> GetAll();
 
     }
 }

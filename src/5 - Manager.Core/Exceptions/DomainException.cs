@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Manager.Core.Exceptions
 {
-    class DomainException : Exception
+    public class DomainException : Exception
     {
         internal List<string> _errors;
 

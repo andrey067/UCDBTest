@@ -1,5 +1,5 @@
 ﻿using System;
-using Manager.DomainException.Entities;
+using Manager.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Manager.Infra.Context

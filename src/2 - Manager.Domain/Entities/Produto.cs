@@ -1,12 +1,11 @@
-﻿using Manager.DomainException.Validators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using FluentValidation;
 using Manager.Core.Exceptions;
+using Manager.Domain.Validators;
 
-
-
-namespace Manager.DomainException.Entities
+namespace Manager.Domain.Entities
 {
     public class Produto : Base
     {
@@ -60,25 +59,22 @@ namespace Manager.DomainException.Entities
         //Validação da entidade
         public override bool Validate()
         {
-            var validator = new UserValidator();
+            var validator = new ProdutoValidator();
             var validation =  validator.Validate(this);
 
             //Pega os erros na camada de dominio
             if (!validation.IsValid) 
             {
-                foreach(var erros in validation.Errors) 
-                { 
+                if (!validation.IsValid)
+                {
+                    foreach (var error in validation.Errors)
+                        _errors.Add(error.ErrorMessage);
 
-                _errors.Add(erros.ErrorMessage);
-                    throw new Exception("Alguns campos estão inválidos, por favor corrija-os!" + _errors);
+                    throw new DomainException("Alguns campos estão inválidos, por favor corrija-os!", _errors);
                 }
             }
              return true;
         }
-
-
-
-
 
     }
 

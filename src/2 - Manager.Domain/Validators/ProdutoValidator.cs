@@ -1,10 +1,8 @@
 ﻿using System;
 using FluentValidation;
-using Manager.DomainException.Entities;
+using Manager.Domain.Entities;
 
-
-
-namespace Manager.DomainException.Validators
+namespace Manager.Domain.Validators
 {
     public class ProdutoValidator : AbstractValidator<Produto>
     {

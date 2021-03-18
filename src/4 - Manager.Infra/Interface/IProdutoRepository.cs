@@ -1,4 +1,4 @@
-﻿using Manager.DomainException.Entities;
+﻿using Manager.Domain.Entities;
 using Manager.Infra.Interfaces;
 using System;
 using System.Threading.Tasks;

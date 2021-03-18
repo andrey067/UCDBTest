@@ -1,12 +1,10 @@
 using System.Linq;
 using Manager.Infra.Context;
 using System.Threading.Tasks;
-using Manager.DomainException.Entities;
 using Manager.Infra.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-
-
+using Manager.Domain.Entities;
 
 namespace Manager.Infra.Repositories
 {
@@ -61,7 +59,7 @@ namespace Manager.Infra.Repositories
 
 
 
-        public virtual async Task<List<T>> GetAll(T obj)
+        public virtual async Task<List<T>> GetAll()
         {
             return await _context.Set<T>()
                                  .AsNoTracking()
