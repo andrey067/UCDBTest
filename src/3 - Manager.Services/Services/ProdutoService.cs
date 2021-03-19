@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+
 namespace Manager.Services.Services
 {
     public class ProdutoService : IProdutoService
@@ -15,7 +16,6 @@ namespace Manager.Services.Services
         private readonly IMapper _mapper;
 
         private readonly IProdutoRepository _produtoRepository;
-
 
         public ProdutoService(IMapper mapper, IProdutoRepository produtoRepository)
         {
@@ -26,7 +26,8 @@ namespace Manager.Services.Services
         //Create
         public async Task<ProdutoDTO> Create(ProdutoDTO produtoDTO)
         {
-            var produtoExist = await _produtoRepository.GetByNome_produto(produtoDTO.Nome_produto);
+            //TODO
+            var produtoExist = await _produtoRepository.SearchByNome(produtoDTO.Nome_produto);
             if (produtoExist != null)
             {
                 throw new DomainException("Já exixte um produto cadastrado com esse nome");
@@ -38,7 +39,7 @@ namespace Manager.Services.Services
 
             var produtoCreate = await _produtoRepository.Create(produto);
 
-            return _mapper.Map<ProdutoDTO>(produtoDTO);
+            return _mapper.Map<ProdutoDTO>(produtoCreate);
         }
 
         //Update
@@ -51,6 +52,9 @@ namespace Manager.Services.Services
                 throw new DomainException("Produto não existe");
 
             }
+
+
+
             var produto = _mapper.Map<Produto>(produtoDTO);
             produto.Validate();
             produto.ChageName_Produto(produtoDTO.Nome_produto);
@@ -61,6 +65,32 @@ namespace Manager.Services.Services
 
         }
 
+        //Adicionar desconto
+        public async Task<ProdutoDTO> AdicionarDesconto(long id, decimal porcentagem)
+        {
+            var produtoExist = await _produtoRepository.Get(id);
+
+            if (produtoExist == null)
+            {
+                throw new DomainException("Produto não existe");
+
+            }
+
+            //Validação data_vencimento
+            if (produtoExist.Data_vencimento <= DateTime.Now)
+            {
+                throw new DomainException("Produto não pode ser alterado fora da data de validade");
+            }
+            var resultado = produtoExist.Valor - (produtoExist.Valor * porcentagem) / 100;
+
+            var produto = _mapper.Map<Produto>(produtoExist);
+            produto.ChangeValor(resultado);
+            produto.Validate();
+            var produtoUpdate = await _produtoRepository.Update(produto);
+
+            return _mapper.Map<ProdutoDTO>(produtoUpdate);
+
+        }
 
         //GET
         public async Task<ProdutoDTO> Get(long id)
@@ -87,14 +117,23 @@ namespace Manager.Services.Services
             await _produtoRepository.Remove(id);
         }
 
-        public async Task<List<ProdutoDTO>> SearchByNome_Produto(string nome_produto)
+        //Busca por Nome
+        public async Task<List<ProdutoDTO>> SearchByNome(string nome_produto)
         {
-            var todosProdutos = await _produtoRepository.SearchByNome(nome_produto);
+            var produtoNome = await _produtoRepository.SearchByNome(nome_produto);
+            return _mapper.Map<List<ProdutoDTO>>(produtoNome);
 
+        }
+        //Busca por valor
+        public async Task<List<ProdutoDTO>> SearchByValor(decimal valor)
+        {
+            var produtoValor = await _produtoRepository.SearchByValor(valor);
 
-            return _mapper.Map<List<ProdutoDTO>>(todosProdutos);
+            return _mapper.Map<List<ProdutoDTO>>(produtoValor);
         }
 
+
+        //Busca Por data
         public async Task<List<ProdutoDTO>> SearchByData_vencimento(DateTime data_vencimento)
         {
             var allDatas = await _produtoRepository.SearchByData_vencimento(data_vencimento);
@@ -103,5 +142,7 @@ namespace Manager.Services.Services
 
 
         }
+
+
     }
 }

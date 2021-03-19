@@ -1641,6 +1641,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Manager.Infra": "1.0.0",
+          "System.Collections": "4.3.0",
           "automapper": "10.1.1"
         },
         "compile": {

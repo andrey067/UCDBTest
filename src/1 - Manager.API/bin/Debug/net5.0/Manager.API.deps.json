@@ -1432,6 +1432,7 @@
       "Manager.Services/1.0.0": {
         "dependencies": {
           "Manager.Infra": "1.0.0",
+          "System.Collections": "4.3.0",
           "AutoMapper": "10.1.1"
         },
         "runtime": {

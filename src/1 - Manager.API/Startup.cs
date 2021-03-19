@@ -14,6 +14,7 @@ using AutoMapper;
 using Manager.Domain.Entities;
 using Manager.Services.DTO;
 using Manager.API.ViewModels;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace Manager.API
 {
@@ -27,13 +28,13 @@ namespace Manager.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        
-        
+
+
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddControllers();
-            
+
 
             #region Automapper
             var autoMapperConfig = new MapperConfiguration(cfg =>
@@ -50,8 +51,28 @@ namespace Manager.API
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             #endregion
 
-            services.AddDbContext<ProdutoContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("Manager.Infra")));
+
+            #region Configurando Cors
+
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+            #endregion
+
+
+
+
+
+            services.AddDbContext<ProdutoContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Manager.Infra")));
 
             services.AddSwaggerGen(c =>
             {
@@ -62,6 +83,15 @@ namespace Manager.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyOrigin()
+            );
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -73,6 +103,8 @@ namespace Manager.API
 
             app.UseRouting();
 
+            app.UseCors("*");
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -81,4 +113,5 @@ namespace Manager.API
             });
         }
     }
+
 }

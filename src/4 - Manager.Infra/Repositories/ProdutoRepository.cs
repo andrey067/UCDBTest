@@ -10,24 +10,14 @@ using System.Threading.Tasks;
 namespace Manager.Infra.Repositories
 {
 
-	public class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
-	{
+    public class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
+    {
         private readonly ProdutoContext _context;
+
 
         public ProdutoRepository(ProdutoContext context) : base(context)
         {
             _context = context;
-        }
-
-        public async Task<Produto> GetByNome_produto(string nome_produto)
-        {
-            var produto = await _context.Produtos.Where
-                                   (x =>
-                                    x.Nome_produto.ToLower().Contains(nome_produto.ToLower()))
-                                    .AsNoTracking()
-                                    .ToListAsync();
-
-            return produto.FirstOrDefault();
         }
 
         public async Task<List<Produto>> SearchByNome(string nome_produto)
@@ -40,6 +30,16 @@ namespace Manager.Infra.Repositories
 
         }
 
+        public async Task<List<Produto>> SearchByValor(decimal valor)
+        {
+            var AllPRodutos = await _context.Produtos.Where(x => x.Valor == valor)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return AllPRodutos;
+
+        }
+
 
         public async Task<List<Produto>> SearchByData_vencimento(DateTime data_vencimento)
         {
@@ -49,13 +49,6 @@ namespace Manager.Infra.Repositories
 
         }
 
-        
-
-        //TODO
-        public Task<Produto> SearchByValor(decimal valor)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 

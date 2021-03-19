@@ -24,7 +24,6 @@ namespace Manager.API.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet]
         [Route("/api/v1/produto/get/{id}")]
         public async Task<IActionResult> Get(long id)
@@ -59,17 +58,50 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/v1/produto/GetByNome_produto")]
+        [Route("/api/v1/produto/GetByNome_produto/")]
         public async Task<IActionResult> GetByNome_produto(string nome_produto)
         {
             try
             {
-                var produtoObj = await _produtoService.SearchByNome_Produto(nome_produto);
+                var produtoObj = await _produtoService.SearchByNome(nome_produto);
 
                 if (produtoObj == null)
                     return Ok(new ResultViewModel
                     {
                         Message = "Nenhum produto foi encontrado com o ID informado.",
+                        Success = true,
+                        Data = produtoObj
+                    });
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Produto encontrado com sucesso!",
+                    Success = true,
+                    Data = produtoObj
+                });
+            }
+            catch (DomainException ex)
+            {
+                return BadRequest(Responses.DomainErrorMessage(ex.Message));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplicationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/produto/GetByValor")]
+        public async Task<IActionResult> GetByValor(decimal valor)
+        {
+            try
+            {
+                var produtoObj = await _produtoService.SearchByValor(valor);
+
+                if (produtoObj == null)
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum produto foi encontrado nenhum valor informado.",
                         Success = true,
                         Data = produtoObj
                     });
@@ -185,13 +217,37 @@ namespace Manager.API.Controllers
             {
                 var produtoDTO = _mapper.Map<ProdutoDTO>(updateViewModel);
 
-                var userUpdated = await _produtoService.Update(produtoDTO);
+                var produtoUpdated = await _produtoService.Update(produtoDTO);
 
                 return Ok(new ResultViewModel
                 {
                     Message = "O produto foi atualizado com sucesso!",
                     Success = true,
-                    Data = userUpdated
+                    Data = produtoUpdated
+                });
+            }
+            catch (DomainException ex)
+            {
+                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+        [HttpPut]
+        [Route("/api/v1/produto/AdiconarDesconto")]
+        public async Task<IActionResult> AdiconarDesconto(long id, decimal porcentagem)
+        {
+            try
+            {
+                var produtoObj = await _produtoService.AdicionarDesconto(id,porcentagem);
+                
+                return Ok(new ResultViewModel
+                {
+                    Message = "O produto foi atualizado com sucesso!",
+                    Success = true,
+                    Data = produtoObj
                 });
             }
             catch (DomainException ex)
