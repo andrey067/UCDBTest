@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using FrontEnd.Models;
-using Manager.API.ViewModels;
+using Manager.API.Ultilities;
+using Manager.Core.Exceptions;
+using Manager.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -9,19 +11,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMapper _mapper;
-        private readonly string Baseurl = "https://localhost:44372/";
 
-        public HomeController(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
+        private readonly string Baseurl = "https://localhost:5001/";
+
+
         private HttpClient Initialize()
         {
             var client = new HttpClient
@@ -32,18 +32,38 @@ namespace FrontEnd.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
         }
+
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<CreateViewModel> EquipInfo = new List<CreateViewModel>();
 
-            HttpResponseMessage Res = await Initialize().GetAsync("/api/v1/produto/GetAll");
+            HttpResponseMessage Res = await Initialize().GetAsync("api/v1/produto/GetAll");
 
             if (Res.IsSuccessStatusCode)
             {
+
                 var EmpResponse = Res.Content.ReadAsStringAsync().Result;
-                EquipInfo = JsonConvert.DeserializeObject<List<CreateViewModel>>(EmpResponse);
+                var ObjResposta = JsonConvert.DeserializeObject<Response>(EmpResponse);
+                List<Produto> AllProdutos = new List<Produto>();
+                ViewBag.Status = new Response(ObjResposta.message, ObjResposta.success);
+                foreach (var obj in ObjResposta.data)
+                {
+                    Produto produto = new Produto(obj.id, obj.nome_produto, obj.valor, obj.data_vencimento, obj.color);
+                    AllProdutos.Add(produto);
+                }
+
+
+
+                return View(AllProdutos);
+
+
+
             }
 
-            return View(EquipInfo);
+            return View();
         }
+    }
+
 }
+

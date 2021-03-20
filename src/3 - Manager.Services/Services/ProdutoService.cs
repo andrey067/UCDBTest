@@ -6,6 +6,7 @@ using Manager.Services.DTO;
 using Manager.Services.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -97,13 +98,15 @@ namespace Manager.Services.Services
         {
             var produtoExist = await _produtoRepository.GetAll();
 
+
+
             if (produtoExist == null)
             {
                 throw new DomainException("Não há produtos cadastrados");
             }
 
             var produto = _mapper.Map<List<Produto>>(produtoExist);
-            var aux = 0;
+
             foreach (var obj in produto)
             {
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.Date.Ticks)
@@ -125,9 +128,13 @@ namespace Manager.Services.Services
                 }
 
             }
-            
+
+
+
+
             return _mapper.Map<List<ProdutoDTO>>(produto);
         }
+
 
         //GET
         public async Task<ProdutoDTO> Get(long id)
@@ -146,7 +153,6 @@ namespace Manager.Services.Services
 
             return _mapper.Map<List<ProdutoDTO>>(AllProduto);
         }
-
 
         //Remove
         public async Task Remove(long id)

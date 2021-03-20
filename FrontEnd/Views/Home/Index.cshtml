@@ -1,11 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-
-@model List<CreateViewModel>
-
-@*@{
+﻿@model ICollection<Produto>
+{
     ViewBag.Title = "Pagina Inicial";
 }
 <br />
@@ -19,7 +13,7 @@ else if (TempData["MSG_D"] != null)
 {
     <br />
     <p class="alert alert-danger">@TempData["MSG_D"]</p>
-}*@
+}
 <br />
 @if (Model.Count > 0)
 {
@@ -28,13 +22,37 @@ else if (TempData["MSG_D"] != null)
             <thead>
                 <tr>
                     <th scope="col">
-                        @Html.DisplayFor(model => model.First().Nome_produto)
+                        @Html.DisplayNameFor(model => model.First().nome_produto);
                     </th>
                     <th scope="col">
-                        @Html.DisplayFor(model => model.First().Data_vencimento)
+                        @Html.DisplayNameFor(model => model.First().data_vencimento)
                     </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.First().valor);
+                    </th>
+
                 </tr>
             </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nome_produto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.data_vencimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.valor)
+                    </td>
+                    @*<td>
+                        <a asp-action="Atualizar" asp-route-id="@item.Id" class="btn btn-secondary">Atualizar</a>
+                        <a asp-action="Detalhes" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                    </td>*@
+                </tr>
+
+            }
         </table>
     </div>
     <div>

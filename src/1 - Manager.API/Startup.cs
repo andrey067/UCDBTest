@@ -20,6 +20,7 @@ namespace Manager.API
 {
     public class Startup
     {
+        readonly string CorsValidations = "CorsValidations";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -49,22 +50,6 @@ namespace Manager.API
             #region InjecaoDepedencia
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            #endregion
-
-
-            #region Configurando Cors
-
-
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                    });
-            });
             #endregion
 
 
@@ -103,20 +88,13 @@ namespace Manager.API
 
             app.UseRouting();
 
-            app.UseCors("*");
+            app.UseCors(CorsValidations);
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

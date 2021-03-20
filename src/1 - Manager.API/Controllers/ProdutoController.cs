@@ -134,7 +134,7 @@ namespace Manager.API.Controllers
                 if (produtoObj == null)
                     return Ok(new ResultViewModel
                     {
-                        Message = "Nenhum produto foi encontrado com a data informada informado.",
+                        Message = "Nenhum produto foi encontrado com a data  informada.",
                         Success = true,
                         Data = produtoObj
                     });
@@ -166,7 +166,7 @@ namespace Manager.API.Controllers
 
                 return Ok(new ResultViewModel
                 {
-                    Message = "Usuários encontrados com sucesso!",
+                    Message = "Produtos encontrados com sucesso!",
                     Success = true,
                     Data = AllProdutos
                 });
@@ -188,119 +188,13 @@ namespace Manager.API.Controllers
         {
             try
             {
-                var allUsers = await _produtoService.GetAll();
+                var AllProdutos = await _produtoService.GetAll();
 
                 return Ok(new ResultViewModel
                 {
-                    Message = "Usuários encontrados com sucesso!",
+                    Message = "Produtos encontrados com sucesso!",
                     Success = true,
-                    Data = allUsers
-                });
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(Responses.DomainErrorMessage(ex.Message));
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, Responses.ApplicationErrorMessage());
-            }
-        }
-
-        [HttpPost]
-        [Route("/api/v1/produto/create")]
-        public async Task<ActionResult> Create([FromBody] CreateViewModel createViewModel)
-        {
-            try
-            {
-                var produtoDTO = _mapper.Map<ProdutoDTO>(createViewModel);
-
-                var produtoCreate = await _produtoService.Create(produtoDTO);
-
-
-                return Ok(new ResultViewModel
-                {
-                    Message = "Produto criado com sucesso",
-                    Success = true,
-                    Data = produtoCreate
-                });
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
-            }
-            catch (Exception)
-            {
-                return StatusCode(500, Responses.ApplicationErrorMessage());
-            }
-
-        }
-      
-        [HttpPut]
-        [Route("/api/v1/produto/update")]
-        public async Task<IActionResult> Update([FromBody] UpdateViewModel updateViewModel)
-        {
-            try
-            {
-                var produtoDTO = _mapper.Map<ProdutoDTO>(updateViewModel);
-
-                var produtoUpdated = await _produtoService.Update(produtoDTO);
-
-                return Ok(new ResultViewModel
-                {
-                    Message = "O produto foi atualizado com sucesso!",
-                    Success = true,
-                    Data = produtoUpdated
-                });
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
-        }
-        
-        [HttpPut]
-        [Route("/api/v1/produto/AdiconarDesconto")]
-        public async Task<IActionResult> AdiconarDesconto(long id, decimal porcentagem)
-        {
-            try
-            {
-                var produtoObj = await _produtoService.AdicionarDesconto(id,porcentagem);
-                
-                return Ok(new ResultViewModel
-                {
-                    Message = "O produto foi atualizado com sucesso!",
-                    Success = true,
-                    Data = produtoObj
-                });
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
-        }
-
-        [HttpDelete]
-        [Route("/api/v1/produto/Remove/{id}")]
-        public async Task<IActionResult> Remove(long id)
-        {
-            try
-            {
-                await _produtoService.Remove(id);
-
-                return Ok(new ResultViewModel
-                {
-                    Message = "Usuário removido com sucesso!",
-                    Success = true,
-                    Data = null
+                    Data = AllProdutos
                 });
             }
             catch (DomainException ex)
@@ -314,8 +208,178 @@ namespace Manager.API.Controllers
         }
 
 
+    //    [HttpGet]
+    //    [Route("/api/v1/produto/SearchAll")]
+    //    public async Task<IActionResult> SearchAll(string texto)
+    //    {
 
 
+
+
+    //        try
+    //        {
+
+
+    //            var buscaNome = await _produtoService.SearchByNome(texto);
+
+    //            return Ok(new ResultViewModel
+    //            {
+    //                Message = "Produtos encontrados com sucesso!",
+    //                Success = true,
+    //                Data = buscaNome
+    //            });
+
+
+
+    //        catch (DomainException ex)
+    //        {
+    //            return BadRequest(Responses.DomainErrorMessage(ex.Message));
+    //        }
+    //        catch (Exception)
+    //        {
+    //            return StatusCode(500, Responses.ApplicationErrorMessage());
+    //        }
+
+
+
+    //        var buscaValor = await _produtoService.SearchByValor(Convert.ToDecimal(texto));
+
+    //        return Ok(new ResultViewModel
+    //        {
+    //            Message = "Produtos encontrados com sucesso!",
+    //            Success = true,
+    //            Data = buscaValor
+    //        });
+
+
+
+    //        var buscaData = await _produtoService.SearchByData_vencimento(Convert.ToDateTime(texto));
+    //        return Ok(new ResultViewModel
+    //        {
+    //            Message = "Produtos encontrados com sucesso!",
+    //            Success = true,
+    //            Data = buscaData
+    //        });
+
+
+
+
+
+    //    }
+    //}
+
+
+
+
+    [HttpPost]
+    [Route("/api/v1/produto/create")]
+    public async Task<ActionResult> Create([FromBody] CreateViewModel createViewModel)
+    {
+        try
+        {
+            var produtoDTO = _mapper.Map<ProdutoDTO>(createViewModel);
+
+            var produtoCreate = await _produtoService.Create(produtoDTO);
+
+
+            return Ok(new ResultViewModel
+            {
+                Message = "Produto criado com sucesso",
+                Success = true,
+                Data = produtoCreate
+            });
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, Responses.ApplicationErrorMessage());
+        }
 
     }
+
+    [HttpPut]
+    [Route("/api/v1/produto/update")]
+    public async Task<IActionResult> Update([FromBody] UpdateViewModel updateViewModel)
+    {
+        try
+        {
+            var produtoDTO = _mapper.Map<ProdutoDTO>(updateViewModel);
+
+            var produtoUpdated = await _produtoService.Update(produtoDTO);
+
+            return Ok(new ResultViewModel
+            {
+                Message = "O produto foi atualizado com sucesso!",
+                Success = true,
+                Data = produtoUpdated
+            });
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
+    }
+
+    [HttpPut]
+    [Route("/api/v1/produto/AdiconarDesconto")]
+    public async Task<IActionResult> AdiconarDesconto(long id, decimal porcentagem)
+    {
+        try
+        {
+            var produtoObj = await _produtoService.AdicionarDesconto(id, porcentagem);
+
+            return Ok(new ResultViewModel
+            {
+                Message = "O produto foi atualizado com sucesso!",
+                Success = true,
+                Data = produtoObj
+            });
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex);
+        }
+    }
+
+    [HttpDelete]
+    [Route("/api/v1/produto/Remove/{id}")]
+    public async Task<IActionResult> Remove(long id)
+    {
+        try
+        {
+            await _produtoService.Remove(id);
+
+            return Ok(new ResultViewModel
+            {
+                Message = "Usuário removido com sucesso!",
+                Success = true,
+                Data = null
+            });
+        }
+        catch (DomainException ex)
+        {
+            return BadRequest(Responses.DomainErrorMessage(ex.Message));
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, Responses.ApplicationErrorMessage());
+        }
+    }
+
+
+
+
+
+}
 }
