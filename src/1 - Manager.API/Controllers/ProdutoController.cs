@@ -157,6 +157,32 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet]
+        [Route("/api/v1/produto/GetAllDatas")]
+        public async Task<IActionResult> GetAllDatas()
+        {
+            try
+            {
+                var AllProdutos = await _produtoService.GetAllDate();
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Usuários encontrados com sucesso!",
+                    Success = true,
+                    Data = AllProdutos
+                });
+            }
+            catch (DomainException ex)
+            {
+                return BadRequest(Responses.DomainErrorMessage(ex.Message));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplicationErrorMessage());
+            }
+        }
+
+
+        [HttpGet]
         [Route("/api/v1/produto/GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -209,6 +235,7 @@ namespace Manager.API.Controllers
             }
 
         }
+      
         [HttpPut]
         [Route("/api/v1/produto/update")]
         public async Task<IActionResult> Update([FromBody] UpdateViewModel updateViewModel)
@@ -235,6 +262,7 @@ namespace Manager.API.Controllers
                 return StatusCode(500, ex);
             }
         }
+        
         [HttpPut]
         [Route("/api/v1/produto/AdiconarDesconto")]
         public async Task<IActionResult> AdiconarDesconto(long id, decimal porcentagem)

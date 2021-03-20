@@ -3,7 +3,7 @@
 }
 
 
-@model ICollection<ProdutoView>
+@model List<CreateViewModel>
 
 @*@{
     ViewBag.Title = "Pagina Inicial";
@@ -28,13 +28,10 @@ else if (TempData["MSG_D"] != null)
             <thead>
                 <tr>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.First().Id)
+                        @Html.DisplayFor(model => model.First().Nome_produto)
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.First().Nome_produto)
-                    </th>
-                    <th scope="col">
-                        @Html.DisplayNameFor(model => model.First().Data_vencimento)
+                        @Html.DisplayFor(model => model.First().Data_vencimento)
                     </th>
                 </tr>
             </thead>

@@ -1,42 +1,49 @@
 ﻿using AutoMapper;
 using FrontEnd.Models;
-using Manager.Services.Interface;
+using Manager.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProdutoService _produtoService;
         private readonly IMapper _mapper;
+        private readonly string Baseurl = "https://localhost:44372/";
 
-        public HomeController(IProdutoService produtoService, IMapper mapper)
+        public HomeController(IMapper mapper)
         {
-            _produtoService = produtoService;
             _mapper = mapper;
         }
-
-
-        [Route("/api/v1/produto/GetAll")]
+        private HttpClient Initialize()
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(Baseurl)
+            };
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            return client;
+        }
         public async Task<IActionResult> Index()
         {
-            return View(await _produtoService.GetAll());
-        }
+            List<CreateViewModel> EquipInfo = new List<CreateViewModel>();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            HttpResponseMessage Res = await Initialize().GetAsync("/api/v1/produto/GetAll");
 
-        public IActionResult Error()
-        {
-            return View();
+            if (Res.IsSuccessStatusCode)
+            {
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                EquipInfo = JsonConvert.DeserializeObject<List<CreateViewModel>>(EmpResponse);
+            }
+
+            return View(EquipInfo);
         }
-    }
 }

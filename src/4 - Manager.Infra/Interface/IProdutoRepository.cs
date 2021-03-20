@@ -13,9 +13,9 @@ namespace Manager.Infra.Interface
 
         Task<List<Produto>> SearchByValor(decimal valor);
 
+        Task<Produto> GetByNome(string nome_produto);
 
         Task<List<Produto>> SearchByData_vencimento(DateTime data_vencimento);
-
 
 
 

@@ -49,6 +49,19 @@ namespace Manager.Infra.Repositories
 
         }
 
+        public async Task<Produto> GetByNome(string nome_produto)
+        {
+            var AllProdutos = await _context.Produtos
+                                   .Where
+                                   (
+                                        x =>
+                                            x.Nome_produto.ToLower() == nome_produto.ToLower()
+                                    )
+                                    .AsNoTracking()
+                                    .ToListAsync();
+
+            return AllProdutos.FirstOrDefault();
+        }
     }
 
 

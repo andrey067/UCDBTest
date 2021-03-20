@@ -19,6 +19,8 @@ namespace Manager.Domain.Entities
 
         public DateTime Data_vencimento { get; private set; }
 
+        public string? Color { get; private set; }
+
 
         //EF -Construtor para o Entity Framework
         protected Produto() { }
@@ -26,11 +28,12 @@ namespace Manager.Domain.Entities
 
 
         //Construtor padrão
-        public Produto(string nome_produto, decimal valor, DateTime data_vencimento)
+        public Produto(string nome_produto, decimal valor, DateTime data_vencimento, string color)
         {
             Nome_produto = nome_produto;
             Valor = valor;
             Data_vencimento = data_vencimento;
+            Color = color;
             _errors = new List<string>();
 
             Validate();
@@ -56,14 +59,19 @@ namespace Manager.Domain.Entities
             Validate();
         }
 
+        public void ChangeColor(string color)
+        {
+            Color = color;
+        }
+
         //Validação da entidade
         public override bool Validate()
         {
             var validator = new ProdutoValidator();
-            var validation =  validator.Validate(this);
+            var validation = validator.Validate(this);
 
             //Pega os erros na camada de dominio
-            if (!validation.IsValid) 
+            if (!validation.IsValid)
             {
                 if (!validation.IsValid)
                 {
@@ -73,7 +81,7 @@ namespace Manager.Domain.Entities
                     throw new DomainException("Alguns campos estão inválidos, por favor corrija-os!", _errors);
                 }
             }
-             return true;
+            return true;
         }
 
     }

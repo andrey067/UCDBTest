@@ -27,7 +27,7 @@ namespace Manager.Services.Services
         public async Task<ProdutoDTO> Create(ProdutoDTO produtoDTO)
         {
             //TODO
-            var produtoExist = await _produtoRepository.SearchByNome(produtoDTO.Nome_produto);
+            var produtoExist = await _produtoRepository.GetByNome(produtoDTO.Nome_produto);
             if (produtoExist != null)
             {
                 throw new DomainException("Já exixte um produto cadastrado com esse nome");
@@ -92,6 +92,43 @@ namespace Manager.Services.Services
 
         }
 
+        //Busca todas as datas e atualiza a cor
+        public async Task<List<ProdutoDTO>> GetAllDate()
+        {
+            var produtoExist = await _produtoRepository.GetAll();
+
+            if (produtoExist == null)
+            {
+                throw new DomainException("Não há produtos cadastrados");
+            }
+
+            var produto = _mapper.Map<List<Produto>>(produtoExist);
+            var aux = 0;
+            foreach (var obj in produto)
+            {
+                if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.Date.Ticks)
+                {
+                    obj.ChangeColor("Red");
+                    var produtoUpdate = await _produtoRepository.Update(obj);
+                }
+                if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.AddDays(3).Date.Ticks)
+                {
+                    obj.ChangeColor("Yellow");
+                    var produtoUpdate = await _produtoRepository.Update(obj);
+
+                }
+                if (obj.Data_vencimento.Date.Ticks > DateTime.Now.AddDays(3).Date.Ticks)
+                {
+                    obj.ChangeColor("Green");
+                    var produtoUpdate = await _produtoRepository.Update(obj);
+
+                }
+
+            }
+            
+            return _mapper.Map<List<ProdutoDTO>>(produto);
+        }
+
         //GET
         public async Task<ProdutoDTO> Get(long id)
         {
@@ -137,6 +174,7 @@ namespace Manager.Services.Services
         public async Task<List<ProdutoDTO>> SearchByData_vencimento(DateTime data_vencimento)
         {
             var allDatas = await _produtoRepository.SearchByData_vencimento(data_vencimento);
+
 
             return _mapper.Map<List<ProdutoDTO>>(allDatas);
 

@@ -19,6 +19,8 @@ namespace Manager.Services.Interface
 
         Task<List<ProdutoDTO>> SearchByData_vencimento(DateTime data_vencimento);
 
+        Task<List<ProdutoDTO>> GetAllDate();
+
         Task<ProdutoDTO> AdicionarDesconto(long id, decimal porcentagem);
 
 

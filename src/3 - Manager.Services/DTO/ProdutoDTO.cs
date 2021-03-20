@@ -13,19 +13,19 @@ namespace Manager.Services.DTO
 
         public DateTime Data_vencimento { get;  set; }
 
-
+        public string? Color { get; set; }
 
         public ProdutoDTO()
         {
 
         }
 
-        public ProdutoDTO(long id, string nome_produto, decimal valor, DateTime data_vencimento)
-        {
+        public ProdutoDTO(long id, string nome_produto, decimal valor, DateTime data_vencimento, string color) {
             Id = id;
             Nome_produto = nome_produto;
             Valor = valor;
             Data_vencimento = data_vencimento;
+            Color = color;
         }
 
 
