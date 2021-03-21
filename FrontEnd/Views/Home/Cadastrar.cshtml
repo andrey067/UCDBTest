@@ -1,0 +1,61 @@
+﻿
+@model CreateViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar Produto";
+}
+<br />
+<h6>@ViewData["Title"]</h6>
+<br />
+@if (TempData["MSG_S"] != null)
+{
+    <br />
+    <p class="alert alert-success">@TempData["MSG_S"]</p>
+
+}
+else if (TempData["MSG_D"] != null)
+{
+    <br />
+    <p class="alert alert-danger">@TempData["MSG_D"]</p>
+}
+
+<form asp-action="Cadastrar" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row mb-3">
+        <div class="col-sm-3 text-right">
+            <label asp-for="Nome_produto" class="control-label"></label>
+        </div>
+        <div class="col-sm-5">
+            <input asp-for="Nome_produto" class="form-control" />
+            <span asp-validation-for="Nome_produto" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-3 text-right">
+            <label asp-for="Valor" class="control-label"></label>
+        </div>
+        <div class="col-sm-5">
+            <input asp-for="Valor" class="form-control" />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col-sm-3 text-right">
+            <label asp-for="Data_vencimento" class="control-label"></label>
+        </div>
+        <div class="col-sm-5">
+            <input asp-for="Data_vencimento" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3 ">
+        <div class="col-sm-3 text-right"></div>
+        <div class="col-sm-5">
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            <a class="btn btn-primary" asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</form>

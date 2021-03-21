@@ -208,69 +208,6 @@ namespace Manager.API.Controllers
         }
 
 
-    //    [HttpGet]
-    //    [Route("/api/v1/produto/SearchAll")]
-    //    public async Task<IActionResult> SearchAll(string texto)
-    //    {
-
-
-
-
-    //        try
-    //        {
-
-
-    //            var buscaNome = await _produtoService.SearchByNome(texto);
-
-    //            return Ok(new ResultViewModel
-    //            {
-    //                Message = "Produtos encontrados com sucesso!",
-    //                Success = true,
-    //                Data = buscaNome
-    //            });
-
-
-
-    //        catch (DomainException ex)
-    //        {
-    //            return BadRequest(Responses.DomainErrorMessage(ex.Message));
-    //        }
-    //        catch (Exception)
-    //        {
-    //            return StatusCode(500, Responses.ApplicationErrorMessage());
-    //        }
-
-
-
-    //        var buscaValor = await _produtoService.SearchByValor(Convert.ToDecimal(texto));
-
-    //        return Ok(new ResultViewModel
-    //        {
-    //            Message = "Produtos encontrados com sucesso!",
-    //            Success = true,
-    //            Data = buscaValor
-    //        });
-
-
-
-    //        var buscaData = await _produtoService.SearchByData_vencimento(Convert.ToDateTime(texto));
-    //        return Ok(new ResultViewModel
-    //        {
-    //            Message = "Produtos encontrados com sucesso!",
-    //            Success = true,
-    //            Data = buscaData
-    //        });
-
-
-
-
-
-    //    }
-    //}
-
-
-
-
     [HttpPost]
     [Route("/api/v1/produto/create")]
     public async Task<ActionResult> Create([FromBody] CreateViewModel createViewModel)

@@ -1,7 +1,9 @@
 ﻿@model ICollection<Produto>
-{
-    ViewBag.Title = "Pagina Inicial";
+
+@{
+    Layout = "_Layout";
 }
+
 <br />
 @if (TempData["MSG_S"] != null)
 {
@@ -22,13 +24,16 @@ else if (TempData["MSG_D"] != null)
             <thead>
                 <tr>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.First().nome_produto);
+                        @Html.DisplayNameFor(model => model.First().nome_produto)
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.First().data_vencimento)
+                        @Html.DisplayNameFor(model => model.First().color)
                     </th>
                     <th scope="col">
-                        @Html.DisplayNameFor(model => model.First().valor);
+                        Status
+                    </th>
+                    <th scope="col">
+                        Operações
                     </th>
 
                 </tr>
@@ -40,18 +45,17 @@ else if (TempData["MSG_D"] != null)
                         @Html.DisplayFor(modelItem => item.nome_produto)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.data_vencimento)
+                        @Convert.ToDateTime(item.data_vencimento).ToString("dd/MM/yyyy")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.valor)
+                        @Html.DisplayFor(modelItem => item.color)
                     </td>
-                    @*<td>
-                        <a asp-action="Atualizar" asp-route-id="@item.Id" class="btn btn-secondary">Atualizar</a>
-                        <a asp-action="Detalhes" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
-                        <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
-                    </td>*@
+                    <td>
+                        <a asp-action="Atualizar" asp-route-id="@item.id" class="btn btn-secondary">Atualizar</a>
+                        <a asp-action="Detalhes" asp-route-id="@item.id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Excluir" asp-route-id="@item.id" class="btn btn-danger">Excluir</a>
+                    </td>
                 </tr>
-
             }
         </table>
     </div>
@@ -63,3 +67,9 @@ else
     <span>Nenhum registro cadastrado</span>
 
 }
+
+
+
+@*<td>
+    @Html.DisplayFor(modelItem => item.valor, "Currency")
+</td>*@

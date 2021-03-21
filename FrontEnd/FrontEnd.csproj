@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\src\1 - Manager.API\Manager.API.csproj" />
     <ProjectReference Include="..\src\3 - Manager.Services\Manager.Services.csproj" />
   </ItemGroup>
