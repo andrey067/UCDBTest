@@ -24,7 +24,6 @@ namespace FrontEnd.Controllers
 
         private readonly string Baseurl = "https://localhost:5001/";
 
-
         private HttpClient Initialize()
         {
             var client = new HttpClient
@@ -56,14 +55,8 @@ namespace FrontEnd.Controllers
                     AllProdutos.Add(produto);
                 }
 
-
-
                 return View(AllProdutos);
-
-
-
             }
-
             return View();
         }
 
@@ -77,51 +70,68 @@ namespace FrontEnd.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Cadastrar([FromForm]CreateViewModel createView)
+        public async Task<ActionResult> Cadastrar([FromForm] CreateViewModel createView)
         {
-            HttpResponseMessage Res = await Initialize().PostAsJsonAsync($"api/v1/produto/create", createView);
+            Produto p = new Produto
+            {
+                nome_produto = createView.Nome_produto,
+                valor = (double)createView.Valor,
+                data_vencimento = createView.Data_vencimento
+            };
+
+            HttpResponseMessage Res = await Initialize().PostAsJsonAsync($"api/v1/produto/create", p);
             if (Res.IsSuccessStatusCode)
             {
-                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
-                var ObjResposta = JsonConvert.DeserializeObject<Response>(EmpResponse);
-                ViewBag.Status = new Response(ObjResposta.message, ObjResposta.success);
+                var ProdReponse = Res.Content.ReadAsStringAsync().Result;
+                var ObjResposta = JsonConvert.DeserializeObject<ResultViewModel>(ProdReponse);
+                ViewBag.Status = new Response(ObjResposta.Message, ObjResposta.Success);
                 TempData["MSG_S"] = "Registro salvo com sucesso!";
-                return View();
+                return new RedirectResult(nameof(Index));
             }
             TempData["MSG_D"] = "Houve um problema!";
             return View();
         }
 
-
-
         public async Task<IActionResult> Atualizar(int id)
         {
-
             HttpResponseMessage getId = await Initialize().GetAsync($"api/v1/produto/Get/{id}");
+
+            if (getId.IsSuccessStatusCode)
+            {
+                var EmpResponse = getId.Content.ReadAsStringAsync().Result;
+
+                var ObjResposta = JsonConvert.DeserializeObject<ResultViewModel>(EmpResponse);
+                ViewBag.Status = new Response(ObjResposta.Message, ObjResposta.Success);
+                var objProduto = JsonConvert.SerializeObject(ObjResposta.Data);
+                var produto = JsonConvert.DeserializeObject<UpdateViewModel>(objProduto);
+
+                return View(produto);
+            }
+
+            TempData["MSG_D"] = "Houve um problema!";
+            return View();
+        }
+
+
+        public async Task<IActionResult> Update([FromForm] UpdateViewModel produto)
+        {
+
+            HttpResponseMessage getId = await Initialize().PutAsJsonAsync($"api/v1/produto/update", produto);
+           
             if (getId.IsSuccessStatusCode)
             {
                 var ProdReponse = getId.Content.ReadAsStringAsync().Result;
-                var ObjResposta = JsonConvert.DeserializeObject<Response>(ProdReponse);
-
-
-                //foreach (var obj in ObjResposta.data)
-                //{
-                //    if (obj.id == id)
-                //    {
-                //        HttpResponseMessage Res = await Initialize().PutAsJsonAsync($"api/v1/produto/update", obj);
-                //        if (Res.IsSuccessStatusCode)
-                //        {
-                //            return View();
-                //        }
-                //        //TODO - page error
-                //        return View();
-                //    }
-
-                //}
+                var ObjResposta = JsonConvert.DeserializeObject<ResultViewModel>(ProdReponse);
+                ViewBag.Status = new Response(ObjResposta.Message, ObjResposta.Success);
+                TempData["MSG_S"] = "Registro Alterado com sucesso!";
+                return new RedirectResult(nameof(Index));
             }
-            //TODO - obj não encontrado
-            return View();
+            TempData["MSG_D"] = "Houve um problema!";
+            return new RedirectResult(nameof(Atualizar));
         }
+
+
+
 
 
         //TODO
@@ -131,29 +141,38 @@ namespace FrontEnd.Controllers
 
             if (getId.IsSuccessStatusCode)
             {
-                var EmpResponse = getId.Content.ReadAsStreamAsync().Result;
-                //var teste = EmpResponse
+                var EmpResponse = getId.Content.ReadAsStringAsync().Result;
+                var ObjResposta = JsonConvert.DeserializeObject<ResultViewModel>(EmpResponse);
+                ViewBag.Status = new Response(ObjResposta.Message, ObjResposta.Success);
+                var objProduto = JsonConvert.SerializeObject(ObjResposta.Data);
+                var produto = JsonConvert.DeserializeObject<Produto>(objProduto);
 
-                //var teste = JsonConvert.DeserializeObject<Produto>(EmpResponse);
-
-                //var ObjResposta = JsonConvert.DeserializeObject<Response>(EmpResponse);
-
-
-                //Produto p; 
-                //foreach (var obj in ObjResposta.data)
-                //{
-                //    p.nome_produto = obj.nome_produto;
-                //    p.valor = obj.valor;
-                //    p.data_vencimento = obj.data_vencimento;
-                //}
-
-                return View();
+                return View(produto);
             }
 
-
-            return View();
+            TempData["MSG_D"] = "Houve um problema!";
+            return new RedirectResult(nameof(Index));
         }
 
+        public async Task<bool> AdicionarDesconto(int id, double desconto)
+        {
+            HttpResponseMessage getId = await Initialize().PostAsJsonAsync($"api/v1/produto/AdiconarDesconto{id}", desconto);
+
+            if (getId.IsSuccessStatusCode)
+            {
+                var EmpResponse = getId.Content.ReadAsStringAsync().Result;
+                var ObjResposta = JsonConvert.DeserializeObject<ResultViewModel>(EmpResponse);
+                ViewBag.Status = new Response(ObjResposta.Message, ObjResposta.Success);
+                var objProduto = JsonConvert.SerializeObject(ObjResposta.Data);
+                var produto = JsonConvert.DeserializeObject<Produto>(objProduto);
+
+                return true ;
+            }
+
+            TempData["MSG_D"] = "Houve um problema!";
+            return false;
+
+        }
 
 
 

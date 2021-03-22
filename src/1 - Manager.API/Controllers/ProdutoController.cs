@@ -264,32 +264,33 @@ namespace Manager.API.Controllers
         }
     }
 
-    [HttpPut]
-    [Route("/api/v1/produto/AdiconarDesconto")]
-    public async Task<IActionResult> AdiconarDesconto(long id, decimal porcentagem)
-    {
-        try
+        [HttpPut]
+        [Route("/api/v1/produto/AdiconarDesconto")]
+        public async Task<IActionResult> AdiconarDesconto(long id, decimal porcentagem)
         {
-            var produtoObj = await _produtoService.AdicionarDesconto(id, porcentagem);
-
-            return Ok(new ResultViewModel
+            try
             {
-                Message = "O produto foi atualizado com sucesso!",
-                Success = true,
-                Data = produtoObj
-            });
-        }
-        catch (DomainException ex)
-        {
-            return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex);
-        }
-    }
+                var produtoObj = await _produtoService.AdicionarDesconto(id, porcentagem);
 
-    [HttpDelete]
+                return Ok(new ResultViewModel
+                {
+                    Message = "O produto foi atualizado com sucesso!",
+                    Success = true,
+                    Data = produtoObj
+                });
+            }
+            catch (DomainException ex)
+            {
+                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
+                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
+        [HttpDelete]
     [Route("/api/v1/produto/Remove/{id}")]
     public async Task<IActionResult> Remove(long id)
     {

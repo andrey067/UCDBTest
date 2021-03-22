@@ -53,13 +53,11 @@ namespace Manager.Services.Services
                 throw new DomainException("Produto não existe");
 
             }
-
-
-
             var produto = _mapper.Map<Produto>(produtoDTO);
             produto.Validate();
             produto.ChageName_Produto(produtoDTO.Nome_produto);
-
+            produto.ChangeData_vencimento(produtoDTO.Data_vencimento);
+            produto.ChangeValor(produtoDTO.Valor);
             var produtoUpdate = await _produtoRepository.Update(produto);
 
             return _mapper.Map<ProdutoDTO>(produtoUpdate);
@@ -67,7 +65,7 @@ namespace Manager.Services.Services
         }
 
         //Adicionar desconto
-        public async Task<ProdutoDTO> AdicionarDesconto(long id, decimal porcentagem)
+        public async Task<ProdutoDTO> AdicionarDesconto(long id,decimal porcentagem)
         {
             var produtoExist = await _produtoRepository.Get(id);
 
@@ -111,18 +109,18 @@ namespace Manager.Services.Services
             {
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.Date.Ticks)
                 {
-                    obj.ChangeColor("Red");
+                    obj.ChangeColor("F46D69");
                     var produtoUpdate = await _produtoRepository.Update(obj);
                 }
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.AddDays(3).Date.Ticks)
                 {
-                    obj.ChangeColor("Yellow");
+                    obj.ChangeColor("E5D33F");
                     var produtoUpdate = await _produtoRepository.Update(obj);
 
                 }
                 if (obj.Data_vencimento.Date.Ticks > DateTime.Now.AddDays(3).Date.Ticks)
                 {
-                    obj.ChangeColor("Green");
+                    obj.ChangeColor("AFF05D");
                     var produtoUpdate = await _produtoRepository.Update(obj);
 
                 }
@@ -151,6 +149,34 @@ namespace Manager.Services.Services
         {
             var AllProduto = await _produtoRepository.GetAll();
 
+            if (AllProduto == null)
+            {
+                throw new DomainException("Não há produtos cadastrados");
+            }
+
+            var produto = _mapper.Map<List<Produto>>(AllProduto);
+
+            foreach (var obj in produto)
+            {
+                if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.Date.Ticks)
+                {
+                    obj.ChangeColor("ed");
+                    var produtoUpdate = await _produtoRepository.Update(obj);
+                }
+                if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.AddDays(3).Date.Ticks)
+                {
+                    obj.ChangeColor("yellow");
+                    var produtoUpdate = await _produtoRepository.Update(obj);
+
+                }
+                if (obj.Data_vencimento.Date.Ticks > DateTime.Now.AddDays(3).Date.Ticks)
+                {
+                    obj.ChangeColor("green");
+                    var produtoUpdate = await _produtoRepository.Update(obj);
+
+                }
+
+            }
             return _mapper.Map<List<ProdutoDTO>>(AllProduto);
         }
 

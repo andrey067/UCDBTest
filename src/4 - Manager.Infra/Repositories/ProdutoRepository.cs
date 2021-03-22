@@ -20,27 +20,6 @@ namespace Manager.Infra.Repositories
             _context = context;
         }
 
-        //public async Task<List<Produto>> SearchAll(string nome_produto)
-        //{
-
-        //    try {
-        //        var AllProdutos = await _context.Produtos.Where(x => x.Nome_produto.ToLower()
-        //            .Contains(nome_produto.ToLower()))
-        //            .AsNoTracking().ToListAsync();
-
-        //        return AllProdutos;
-
-        //    }
-        //    var AllProdutos = await _context.Produtos.Where(x => x.Valor == nome_produto
-        //        .Contains(nome_produto.ToLower()))
-        //        .AsNoTracking().ToListAsync();
-
-            
-
-        //}
-
-
-
         public async Task<List<Produto>> SearchByNome(string nome_produto)
         {
             var AllProdutos = await _context.Produtos.Where(x => x.Nome_produto.ToLower()

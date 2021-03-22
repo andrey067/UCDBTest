@@ -47,8 +47,8 @@ else if (TempData["MSG_D"] != null)
                     <td>
                         @Convert.ToDateTime(item.data_vencimento).ToString("dd/MM/yyyy")
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.color)
+                    <td style="background-color:@item.color.ToLower()">
+                       
                     </td>
                     <td>
                         <a asp-action="Atualizar" asp-route-id="@item.id" class="btn btn-secondary">Atualizar</a>
@@ -67,9 +67,3 @@ else
     <span>Nenhum registro cadastrado</span>
 
 }
-
-
-
-@*<td>
-    @Html.DisplayFor(modelItem => item.valor, "Currency")
-</td>*@

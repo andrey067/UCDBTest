@@ -7,28 +7,35 @@
 <h6>@ViewData["Title"]</h6>
 <br />
 
+
+
 <div>
     <table class="table table-bordered text-center">
         <thead>
-
-
-            
-            @*<tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.id)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.nome_produto)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.data_vencimento)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.valor)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.color)</th>
-
-
+                <th colspan="2">Adicionar desconto</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td>@Html.DisplayFor(model => model.id)</td>
                 <td>@Html.DisplayFor(model => model.nome_produto)</td>
                 <td>@Html.DisplayFor(model => model.data_vencimento)</td>
                 <td>@Html.DisplayFor(model => model.valor)</td>
-                <td>@Html.DisplayFor(model => model.color)</td>
-            </tr>*@
+                <td style="background-color:@Model.color.ToLower()"></td>
+                <td>
+                    <input type="number" id="desconto" name="desconto" placeholder="Digite o valor a ser descontado">
+
+                </td>
+                <td>
+                    <a  asp-action="AdicionarDesconto" asp-route-id="@Model.id"  class="btn btn-secondary">Atualizar</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
