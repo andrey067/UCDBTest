@@ -109,18 +109,18 @@ namespace Manager.Services.Services
             {
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.Date.Ticks)
                 {
-                    obj.ChangeColor("F46D69");
+                    obj.ChangeColor("Red");
                     var produtoUpdate = await _produtoRepository.Update(obj);
                 }
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.AddDays(3).Date.Ticks)
                 {
-                    obj.ChangeColor("E5D33F");
+                    obj.ChangeColor("Yellow");
                     var produtoUpdate = await _produtoRepository.Update(obj);
 
                 }
                 if (obj.Data_vencimento.Date.Ticks > DateTime.Now.AddDays(3).Date.Ticks)
                 {
-                    obj.ChangeColor("AFF05D");
+                    obj.ChangeColor("Green");
                     var produtoUpdate = await _produtoRepository.Update(obj);
 
                 }
@@ -160,7 +160,7 @@ namespace Manager.Services.Services
             {
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.Date.Ticks)
                 {
-                    obj.ChangeColor("ed");
+                    obj.ChangeColor("red");
                     var produtoUpdate = await _produtoRepository.Update(obj);
                 }
                 if (obj.Data_vencimento.Date.Ticks >= DateTime.Now.AddDays(3).Date.Ticks)
