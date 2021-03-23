@@ -186,6 +186,8 @@ namespace Manager.API.Controllers
         [Route("/api/v1/produto/GetAll")]
         public async Task<IActionResult> GetAll()
         {
+
+
             try
             {
                 var AllProdutos = await _produtoService.GetAll();
@@ -281,7 +283,6 @@ namespace Manager.API.Controllers
             }
             catch (DomainException ex)
             {
-                return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
                 return BadRequest(Responses.DomainErrorMessage(ex.Message, ex.Errors));
             }
             catch (Exception ex)

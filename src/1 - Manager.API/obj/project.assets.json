@@ -6092,11 +6092,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj",
+      "projectUniqueName": "G:\\UCDBEntrevista\\UCDBTest\\src\\1 - Manager.API\\Manager.API.csproj",
       "projectName": "Manager.API",
-      "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\Manager.API.csproj",
+      "projectPath": "G:\\UCDBEntrevista\\UCDBTest\\src\\1 - Manager.API\\Manager.API.csproj",
       "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\1 - Manager.API\\obj\\",
+      "outputPath": "G:\\UCDBEntrevista\\UCDBTest\\src\\1 - Manager.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6117,17 +6117,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "G:\\UCDBEntrevista\\UCDBTeste\\src\\2 - Manager.Domain\\Manager.Domain.csproj": {
-              "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\2 - Manager.Domain\\Manager.Domain.csproj"
+            "G:\\UCDBEntrevista\\UCDBTest\\src\\2 - Manager.Domain\\Manager.Domain.csproj": {
+              "projectPath": "G:\\UCDBEntrevista\\UCDBTest\\src\\2 - Manager.Domain\\Manager.Domain.csproj"
             },
-            "G:\\UCDBEntrevista\\UCDBTeste\\src\\3 - Manager.Services\\Manager.Services.csproj": {
-              "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\3 - Manager.Services\\Manager.Services.csproj"
+            "G:\\UCDBEntrevista\\UCDBTest\\src\\3 - Manager.Services\\Manager.Services.csproj": {
+              "projectPath": "G:\\UCDBEntrevista\\UCDBTest\\src\\3 - Manager.Services\\Manager.Services.csproj"
             },
-            "G:\\UCDBEntrevista\\UCDBTeste\\src\\4 - Manager.Infra\\Manager.Infra.csproj": {
-              "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\4 - Manager.Infra\\Manager.Infra.csproj"
+            "G:\\UCDBEntrevista\\UCDBTest\\src\\4 - Manager.Infra\\Manager.Infra.csproj": {
+              "projectPath": "G:\\UCDBEntrevista\\UCDBTest\\src\\4 - Manager.Infra\\Manager.Infra.csproj"
             },
-            "G:\\UCDBEntrevista\\UCDBTeste\\src\\5 - Manager.Core\\Manager.Core.csproj": {
-              "projectPath": "G:\\UCDBEntrevista\\UCDBTeste\\src\\5 - Manager.Core\\Manager.Core.csproj"
+            "G:\\UCDBEntrevista\\UCDBTest\\src\\5 - Manager.Core\\Manager.Core.csproj": {
+              "projectPath": "G:\\UCDBEntrevista\\UCDBTest\\src\\5 - Manager.Core\\Manager.Core.csproj"
             }
           }
         }
